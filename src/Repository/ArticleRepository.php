@@ -39,6 +39,16 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByCreatedDate(int $limit,): array
+    {
+         $qb = $this->createQueryBuilder('a');
+ 
+         $qb->orderBy('a.id', 'DESC')->setMaxResults($limit);
+ 
+         return $qb->getQuery()->getResult();   
+    }
+
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
