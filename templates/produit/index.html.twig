@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitController!{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+    {% for produit in produits %}
+        <section>
+            <h2>{{ produit.titre}}</h2>
+            <p>Description: {{ produit.description }}</p>
+            <p>Prix: {{ produit.prix }} €</p>
+            <p>Quantite stocke: {{ produit.quantitestock }}</p>
+        </section>
+        {#                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a> #}
+    {% endfor %}
+
+{% endblock %}
