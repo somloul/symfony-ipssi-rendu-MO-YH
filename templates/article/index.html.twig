@@ -26,10 +26,10 @@
                 <td>{{ article.datecreation ? article.datecreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ article.datemodification ? article.datemodification|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ article.auteur.nom }}</td>
-                <td><a class="btn btn-dark" href="{{ path('app_article_show', {'id': article.id}) }}">show</a></td>
 
-
-
+                <td>
+                    <a class="btn btn-info" href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                </td>
             </tr>
         {% else %}
             <tr>
@@ -39,5 +39,6 @@
         </tbody>
     </table>
 
+  {#  <a class="btn btn-dark" href="{{ path('app_article_new') }}">Create new</a>#}
 {% endblock %}
     
