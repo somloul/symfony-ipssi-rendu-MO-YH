@@ -33,7 +33,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
-    public function remove(User $entity, bool $flush = false): void
+    /*public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -41,7 +41,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             $this->getEntityManager()->flush();
         }
     }
-
+*/
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */

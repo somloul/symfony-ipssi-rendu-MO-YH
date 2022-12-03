@@ -13,7 +13,6 @@
                 <th>Contenu</th>
                 <th>Datecreation</th>
                 <th>Datemodification</th>
-                <th>Author</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,10 +24,9 @@
                 <td>{{ article.contenu }}</td>
                 <td>{{ article.datecreation ? article.datecreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ article.datemodification ? article.datemodification|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.auteur.nom }}</td>
-
                 <td>
-                    <a class="btn btn-info" href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('app_admin_article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -39,11 +37,5 @@
         </tbody>
     </table>
 
-
-
-
-    
-
-  {#  <a class="btn btn-dark" href="{{ path('app_article_new') }}">Create new</a>#}
+    <a href="{{ path('app_admin_article_new') }}">Create new</a>
 {% endblock %}
-    
