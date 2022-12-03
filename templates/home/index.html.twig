@@ -28,9 +28,7 @@
                 <td>{{ article.titre }}</td>
                 <td>{{ article.datecreation ? article.datecreation|date('d-m-Y') : '' }}</td>
 
-                <td>
-                    <a class="btn btn-info" href="{{ path('app_detail_article', {'id': article.id}) }}">Lire plus</a>
-                </td>
+
             </tr>
         {% else %}
             <tr>

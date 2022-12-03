@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(): Response
+    public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('home/index.html.twig', [
             'articles' => $articleRepository->findByCreatedDate(3),
@@ -19,14 +19,14 @@ class HomeController extends AbstractController
     }
 
 
-    #[Route('/{id}', name: 'app_detail_article', methods: ['GET'])]
+   /* #[Route('/{id}', name: 'app_detail_article', methods: ['GET'])]
     public function show(Article $article): Response
     {
         return $this->render('home/show.html.twig', [
             'article' => $article,
         ]);
     }
-
+*/
 
 
 
