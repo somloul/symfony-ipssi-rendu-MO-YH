@@ -30,9 +30,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+    <a class="btn btn-danger"  href="{{ path('app_article_index') }}">Revenir en arriere </a>
 
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+  {# <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
 
-    {{ include('article/_delete_form.html.twig') }}
+    {{ include('article/_delete_form.html.twig') }} #}
 {% endblock %}

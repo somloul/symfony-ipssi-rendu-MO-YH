@@ -17,7 +17,7 @@ class ProduitController extends AbstractController
             'produits' => $produitRepository->findByStatut(),
         ]);
     }
-
+/*
     #[Route('/{id}', name: 'app_produit_show', methods: ['GET'])]
     public function detailprod(Produit $produit): Response
     {
@@ -27,7 +27,7 @@ class ProduitController extends AbstractController
 
     }
 
-
+*/
 
 
 

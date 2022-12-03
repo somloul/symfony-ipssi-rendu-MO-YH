@@ -4,17 +4,7 @@
 
 {% block body %}
 
-<fieldset>
-    <legend> vous voulez trier par ?</legend>
-    <div class="checkbox">
-        <label><input type="checkbox" value="">Option 1</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" value="">Option 2</label>
-    </div>
 
-
-</fieldset>
 
 
 <div class="container">
@@ -31,9 +21,9 @@
                         <p class="card-text">Couleur: {{ produit.couleur }}</p>
                         <p class="card-text">Categorie: {{ produit.categorie.id }}</p>
                     </div>
-                    <div class="card-footer">
-                      <a class="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
-                    </div>
+                    {# <div class="card-footer">
+                     <a class="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Afficher</a>
+                    </div>#}
                 </div>
             </div>
         {% endfor %}
