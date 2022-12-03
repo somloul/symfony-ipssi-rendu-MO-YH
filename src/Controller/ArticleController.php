@@ -50,8 +50,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    
-
     #[Route('article/{id}', name: 'app_article_show', methods: ['GET'])]
     public function shows(Article $article): Response
     {
@@ -59,8 +57,6 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
-
-    
 
     #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response

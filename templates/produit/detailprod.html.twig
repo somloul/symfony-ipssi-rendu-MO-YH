@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail Produit{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h4>Liste des produits</h4>
+
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h2>{{ produits.titre}}</h2>
+                        <p class="card-text">Description: {{ produits.description }}</p>
+                        <p class="card-text">Prix: {{ produits.prix }} €</p>
+                        <p class="card-text">Quantite stocke: {{ produits.quantitestock }}</p>
+                        <p class="card-text">Couleur: {{ produits.couleur }}</p>
+                        <p class="card-text">Categorie: {{ produits.categorie.id }}</p>
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-primary" href="{{ path('app_produit')}}">Retourner</a>
+        </div>
+    </div>
+{% endblock %}
