@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProduitRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Categorie;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -34,6 +35,9 @@ class Produit
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\ManyToOne(inversedBy: 'produits')]
+    private ?categorie $categorie = null;
 
     public function getId(): ?int
     {
@@ -120,6 +124,18 @@ class Produit
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

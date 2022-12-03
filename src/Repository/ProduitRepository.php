@@ -54,13 +54,21 @@ class ProduitRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Produit
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByStatut(): array
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->Where('a.statut = 1');
+        return $qb->getQuery()->getResult();
+    }
+
+
+ //   public function findOneBySomeField($statut statut): ?Produit
+   // {
+     //   return $this->createQueryBuilder('p')
+       //     ->andWhere('p. = :statut')
+         //   ->setParameter('val', $value)
+           // ->getQuery()
+           // ->getOneOrNullResult()
+     //   ;
+ //  }
 }

@@ -3,16 +3,36 @@
 {% block title %}Hello ProduitController!{% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
-    {% for produit in produits %}
-        <section>
-            <h2>{{ produit.titre}}</h2>
-            <p>Description: {{ produit.description }}</p>
-            <p>Prix: {{ produit.prix }} €</p>
-            <p>Quantite stocke: {{ produit.quantitestock }}</p>
-        </section>
+<div class="container">
+    <div class="row">
+        <h4>Liste des produits</h4>
+        {% for produit in produits %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h2>{{ produit.titre}}</h2>
+                        <p class="card-text">Description: {{ produit.description }}</p>
+                        <p class="card-text">Prix: {{ produit.prix }} €</p>
+                        <p class="card-text">Quantite stocke: {{ produit.quantitestock }}/p>
+                        <p class="card-text">Couleur: {{ produit.couleur }}</p>
+                        <p class="card-text">Categorie: {{ produit.categorie.id }}</p>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a class="btn btn-primary my-2">details</a></button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
         {#                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a> #}
-    {% endfor %}
+
 
 {% endblock %}
+
+
