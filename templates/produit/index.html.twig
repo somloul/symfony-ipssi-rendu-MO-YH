@@ -1,15 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProduitController!{% endblock %}
+{% block title %}Produit index{% endblock %}
 
 {% block body %}
+    <h1>Produit index</h1>
 
-
-
-
-<div class="container">
-    <div class="row">
-        <h4>Liste des produits</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>QuantiteStock</th>
+                <th>Statut</th>
+                <th>Couleur</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for produit in produits %}
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
@@ -27,15 +37,8 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
-</div>
+        </tbody>
+    </table>
 
-
-
-        {#                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a> #}
-
-
+    <a href="{{ path('app_produit_new') }}">Create new</a>
 {% endblock %}
-
-
