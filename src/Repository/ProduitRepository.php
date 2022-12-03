@@ -57,9 +57,10 @@ class ProduitRepository extends ServiceEntityRepository
     public function findByStatut(): array
     {
         $qb = $this->createQueryBuilder('a');
-        $qb->Where('a.statut = 1');
+        $qb->Where('a.statut = 1 and a.quantiteStock > 1');
         return $qb->getQuery()->getResult();
     }
+
 
 
  //   public function findOneBySomeField($statut statut): ?Produit

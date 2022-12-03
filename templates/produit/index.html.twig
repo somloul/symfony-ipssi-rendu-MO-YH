@@ -3,6 +3,20 @@
 {% block title %}Hello ProduitController!{% endblock %}
 
 {% block body %}
+
+<fieldset>
+    <legend> vous voulez trier par ?</legend>
+    <div class="checkbox">
+        <label><input type="checkbox" value="">Option 1</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" value="">Option 2</label>
+    </div>
+
+
+</fieldset>
+
+
 <div class="container">
     <div class="row">
         <h4>Liste des produits</h4>
@@ -13,7 +27,7 @@
                         <h2>{{ produit.titre}}</h2>
                         <p class="card-text">Description: {{ produit.description }}</p>
                         <p class="card-text">Prix: {{ produit.prix }} €</p>
-                        <p class="card-text">Quantite stocke: {{ produit.quantitestock }}/p>
+                        <p class="card-text">Quantite stocke: {{ produit.quantitestock }}</p>
                         <p class="card-text">Couleur: {{ produit.couleur }}</p>
                         <p class="card-text">Categorie: {{ produit.categorie.id }}</p>
                     </div>
