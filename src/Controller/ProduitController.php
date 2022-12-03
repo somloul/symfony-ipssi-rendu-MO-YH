@@ -17,9 +17,9 @@ class ProduitController extends AbstractController
             'produits' => $produitRepository->findByStatut(),
         ]);
     }
-/*
+
     #[Route('/{id}', name: 'app_produit_show', methods: ['GET'])]
-    public function detailprod(Produit $produit): Response
+    public function detailprod(Produit $produit ): Response
     {
         return $this->render('produit/detailprod.html.twig', [
             'produits' => $produit,
@@ -27,7 +27,7 @@ class ProduitController extends AbstractController
 
     }
 
-*/
+
 
 
 
