@@ -23,11 +23,7 @@
         </thead>
         <tbody>
         {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.titre }}</td>
-                <td>{{ article.datecreation ? article.datecreation|date('d-m-Y') : '' }}</td>
-
+      
 
             </tr>
         {% else %}

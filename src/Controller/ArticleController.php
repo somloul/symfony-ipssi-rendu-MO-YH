@@ -21,7 +21,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/', name: 'app_article_home', methods: ['GET'])]
+    #[Route('article/', name: 'app_article_home', methods: ['GET'])]
     public function indexHome(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
@@ -50,7 +50,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
+    #[Route('article/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
         return $this->render('article/show.html.twig', [
@@ -76,7 +76,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
+    #[Route('article/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
