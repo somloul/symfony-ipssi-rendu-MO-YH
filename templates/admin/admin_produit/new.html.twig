@@ -40,8 +40,8 @@
         <div class="form-group">
             <label for="statut">statut</label>
             <select name="statut" class="form-control">
-                <option value="yes">Publier</option>
-                <option value="no">pas publier</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
             </select>
         </div>
         <div class="form-group">
@@ -55,8 +55,17 @@
          <div class="form-group">
             <label for="categorie">categorie</label>
             <select name="categorie" class="form-control">
-                <option value="yes">  </option>
-                <option value="non">   </option>
+                {% for data in category %}
+                <option value="{{ data.id }}">{{ data.nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="vendeur">vendeur</label>
+            <select name="vendeur" class="form-control">
+                {% for data in vendeur %}
+                    <option value="{{ data.id }}">{{ data.nom|upper~' '~data.prenom|capitalize }}</option>
+                {% endfor %}
             </select>
         </div>
 
