@@ -32,7 +32,6 @@
                 <td>{{ produit.image }}</td>
                 <td>
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-
                 </td>
             </tr>
         {% else %}
@@ -42,6 +41,5 @@
         {% endfor %}
         </tbody>
     </table>
-
 
 {% endblock %}
