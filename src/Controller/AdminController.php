@@ -25,10 +25,6 @@ class AdminController extends AbstractController
         ]);
     }
 
-
-
-
-
     #[Route('/new', name: 'app_admin_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository): Response
     {

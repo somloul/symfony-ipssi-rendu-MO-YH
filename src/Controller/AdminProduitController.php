@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Produit;
+use App\Entity\User;
 use App\Form\ProduitAdminType;
 use App\Repository\ProduitRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,17 +19,18 @@ class AdminProduitController extends AbstractController
     public function index(ProduitRepository $produitRepository): Response
     {
         return $this->render('admin/admin_produit/index.html.twig', [
-            'produits' => $produitRepository->findAll(),
+            'produits' => $produitRepository->findByStatut(),
         ]);
     }
 
     #[Route('/new', name: 'app_admin_produit_new', methods: ['GET', 'POST'])]
-    public function new( EntityManagerInterface $entityManager, Request $request, ProduitRepository $produitRepository): Response
+    public function new(Request $request, ProduitRepository $produitRepository, EntityManagerInterface $entityManager): Response
     {
-
-        if (isset($_POST['produitAdmin'])) {
+$category = $entityManager->getRepository(Categorie::class)->findAll();
+$vendeur = $entityManager->getRepository(User::class)->findAll();
+        if (isset($_POST['register'])) {
             $produitAdmin = new Produit();
-
+            // encode the plain password
             $produitAdmin->setTitre($_POST['titre']);
             $produitAdmin->setDescription($_POST['description']);
             $produitAdmin->setPrix($_POST['prix']);
@@ -36,35 +38,20 @@ class AdminProduitController extends AbstractController
             $produitAdmin->setQuantiteStock($_POST['quantiteStock']);
             $produitAdmin->setCouleur($_POST['couleur']);
             $produitAdmin->setImage($_POST['image']);
+            $produitAdmin->setCategorie($entityManager->find(Categorie::class,$_POST['categorie']));
+            $produitAdmin->setVendeur($entityManager->find(User::class,$_POST['vendeur']));
 
-            $entityManager->persist($produitAdmin);
-            $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $produitRepository->save($produit, true);
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('admin/admin_produit/new.html.twig', [
+            'produit' => $produit,
+            'form' => $form,
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     #[Route('/{id}', name: 'app_admin_produit_show', methods: ['GET'])]
     public function show(Produit $produit): Response
