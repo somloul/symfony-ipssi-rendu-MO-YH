@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users produit{% endblock %}
+
+{% block body %}
+    <h1>Produit index</h1>
+    {% if app.user %}
+    <div class="w-75 m-auto">
+        <form method="get">
+            <div class="form-group">
+                <label for="qte">qte</label>
+                <input type="number" name="qte" id="qte">
+            </div>
+            <div class="form-group">
+                <label for="couleur">couleur</label>
+                <select name="couleur" id="couleur">
+                    <option value="">pas de filtre</option>
+                    {% for data in couleur %}
+                        <option value="{{ data.couleur }}">{{ data.couleur }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-primary">filtrer</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Prix</th>
+            <th>Description</th>
+            <th>QuantiteStock</th>
+            <th>Statut</th>
+            <th>Couleur</th>
+            <th>Vendeur</th>
+            <th>categorie</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.titre }}</td>
+                <td>{{ produit.prix }}</td>
+                <td>{{ produit.description }}</td>
+                <td>{{ produit.quantiteStock }}</td>
+                <td>{{ produit.statut ? 'Yes' : 'No' }}</td>
+                <td>{{ produit.couleur }}</td>
+                <td>{{ produit.vendeur.nom~' '~produit.vendeur.prenom }}</td>
+                <td>{{ produit.categorie.nom }}</td>
+                <td>
+                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users produit{% endblock %}
+
+{% block body %}
+    <h1>stats</h1>
+    <div class="row">
+        <div class="col-3">
+            <label for="produit">nombre produit : {{ produit }}</label>
+        </div>
+        <div class="col-3">
+            <label for="categorie">nombre categorie : {{ categorie }}</label>
+        </div>
+        <div class="col-3">
+            <label for="article">nombre article : {{ article }}</label>
+        </div>
+        <div class="col-3">
+            <label for="users">nombre utilisateurs : {{ user }}</label>
+        </div>
+    </div>
+{% endblock %}

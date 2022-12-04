@@ -10,12 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/test', name: 'app_home')]
-    public function index(ArticleRepository $articleRepository): Response
-    {
-        return $this->render('home/index.html.twig', [
-            'articles' => $articleRepository->findByCreatedDate(3),
-        ]);
-    }
+
    
 }

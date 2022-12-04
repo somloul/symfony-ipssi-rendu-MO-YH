@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}profil{% endblock %}
+
+{% block body %}
+    <h1>profil</h1>
+
+   <form class="row w-75 m-auto" method="post">
+       <div class="form-group col-6">
+           <label for="nom">nom</label>
+           <input type="text" name="nom" id="nom" value="{{ profil.nom }}" class="form-control">
+       </div>
+       <div class="form-group col-6">
+           <label for="prenom">prenom</label>
+           <input type="text" name="prenom" id="prenom" value="{{ profil.prenom }}" class="form-control">
+       </div>
+       <div class="form-group col-6">
+           <label for="email">email</label>
+           <input type="text" name="email" id="email" value="{{ profil.email }}" class="form-control">
+       </div>
+       <div class="form-group col-6">
+           <label for="password">password</label>
+           <input type="text" name="password" id="password" class="form-control">
+       </div>
+       <div class="form-group col-6">
+           <button class="btn btn-dark" type="submit" name="enregistrer">modifier</button>
+       </div>
+
+   </form>
+
+{% endblock %}

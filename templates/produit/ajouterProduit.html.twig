@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+    <h1>ajouter Produit</h1>
+
+    <form class="row w-75 m-auto" method="post">
+        <div class="form-group col-6">
+            <label for="titre">titre</label>
+            <input type="text" name="titre" id="titre" class="form-control">
+        </div>
+        <div class="form-group col-6">
+            <label for="prix">prix</label>
+            <input type="number" name="prix" id="prix" class="form-control">
+        </div>
+        <div class="form-group col-6">
+            <label for="description">description</label>
+            <input type="text" name="description" id="description" class="form-control">
+        </div>
+        <div class="form-group col-6">
+            <label for="qte">qte</label>
+            <input type="number" name="qte" id="qte" class="form-control">
+        </div>
+        <div class="form-group col-6">
+            <label for="statut">statut</label>
+            <select name="statut" id="statut" class="form-control">
+                <option value="true">oui</option>
+                <option value="false">non</option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="couleur">couleur</label>
+            <input type="text" name="couleur" id="couleur" class="form-control">
+        </div>
+        <div class="form-group col-6">
+            <label for="categorie">categorie</label>
+            <select name="categorie" id="categorie" class="form-control">
+                {% for data in categorie %}
+                <option value="{{ data.id }}">{{ data.nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" name="ajouter">ajouter</button>
+    </form>
+
+{% endblock %}

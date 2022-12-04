@@ -61,6 +61,27 @@ class ProduitRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getByQteAndColor($qte,$color): array
+    {
+        $qb = $this->createQueryBuilder("a");
+        $qb->Where("a.quantiteStock = ".$qte." and a.couleur = '.$color.'");
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getByQte($qte): array
+    {
+        $qb = $this->createQueryBuilder("a");
+        $qb->Where("a.quantiteStock = ".$qte);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getByColor($color): array
+    {
+        $qb = $this->createQueryBuilder("a");
+        $qb->Where("a.couleur = '.$color.'");
+        return $qb->getQuery()->getResult();
+    }
+
 
 
  //   public function findOneBySomeField($statut statut): ?Produit

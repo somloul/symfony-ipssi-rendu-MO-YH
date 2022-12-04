@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\Categorie;
+use App\Entity\Produit;
 use App\Entity\User;
 use App\Form\User1Type;
 use App\Repository\ArticleRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,10 +28,21 @@ class AdminController extends AbstractController
             'produits' => $produitRepository->findAll(),
         ]);
     }
+    #[Route('/acceuil', name: 'acceuil', methods: ['GET'])]
+    public function acceuil(EntityManagerInterface $em,UserRepository $userRepository, ArticleRepository $articleRepository, ProduitRepository $produitRepository): Response
+    {
+        $user = $em->getRepository(User::class)->count([]);
+        $produit = $em->getRepository(Produit::class)->count([]);
+        $article = $em->getRepository(Article::class)->count([]);
+        $categorie = $em->getRepository(Categorie::class)->count([]);
 
-
-
-
+        return $this->render('admin/acceuil/acceuil.html.twig', [
+            'user' => $user,
+            'produit' => $produit,
+            'article' => $article,
+            'categorie' => $categorie,
+        ]);
+    }
 
     #[Route('/new', name: 'app_admin_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository): Response
