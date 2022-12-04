@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Produit;
 use App\Form\ProduitAdminType;
 use App\Repository\ProduitRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,23 +23,48 @@ class AdminProduitController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProduitRepository $produitRepository): Response
+    public function new( EntityManagerInterface $entityManager, Request $request, ProduitRepository $produitRepository): Response
     {
-        $produit = new Produit();
-        $form = $this->createForm(ProduitAdminType::class, $produit);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $produitRepository->save($produit, true);
+        if (isset($_POST['produitAdmin'])) {
+            $produitAdmin = new Produit();
 
-            return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
+            $produitAdmin->setTitre($_POST['titre']);
+            $produitAdmin->setDescription($_POST['description']);
+            $produitAdmin->setPrix($_POST['prix']);
+            $produitAdmin->setStatut($_POST['statut']);
+            $produitAdmin->setQuantiteStock($_POST['quantiteStock']);
+            $produitAdmin->setCouleur($_POST['couleur']);
+            $produitAdmin->setImage($_POST['image']);
+
+            $entityManager->persist($produitAdmin);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->renderForm('admin/admin_produit/new.html.twig', [
-            'produit' => $produit,
-            'form' => $form,
         ]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     #[Route('/{id}', name: 'app_admin_produit_show', methods: ['GET'])]
     public function show(Produit $produit): Response
