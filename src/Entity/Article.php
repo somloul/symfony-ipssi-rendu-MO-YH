@@ -21,12 +21,11 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $contenu = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?user $auteur = null;
-
+    #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datecreation = null;
 
+    #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datemodification = null;
 
@@ -59,17 +58,6 @@ class Article
         return $this;
     }
 
-    public function getAuteur(): ?user
-    {
-        return $this->auteur;
-    }
-
-    public function setAuteur(?user $auteur): self
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
 
     public function getDatecreation(): ?\DateTimeInterface
     {
@@ -85,6 +73,7 @@ class Article
 
     public function getDatemodification(): ?\DateTimeInterface
     {
+        
         return $this->datemodification;
     }
 

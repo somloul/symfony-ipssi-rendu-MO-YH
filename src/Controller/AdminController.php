@@ -18,6 +18,10 @@ class AdminController extends AbstractController
     #[Route('/', name: 'app_admin_index', methods: ['GET'])]
     public function indexx(UserRepository $userRepository, ArticleRepository $articleRepository, ProduitRepository $produitRepository): Response
     {
+
+
+    
+
         return $this->render('admin/index.html.twig', [
             'users' => $userRepository->findAll(),
             'articles' => $articleRepository->findAll(),

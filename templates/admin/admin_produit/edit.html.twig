@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}
 
 {% block title %}Edit Produit{% endblock %}
 
@@ -10,4 +10,89 @@
     <a href="{{ path('app_admin_produit_index') }}">back to list</a>
 
     {{ include('admin_produit/_delete_form.html.twig') }}
+{% endblock %}
+#}
+
+
+{#{% extends 'base.html.twig' %}
+
+{% block title %}New Produit{% endblock %}
+
+{% block body %}
+    <h1>Create new Produit</h1>
+
+    {{ include('admin_produit/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_produit_index') }}">back to list</a>
+{% endblock %}
+#}
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}edit{% endblock %}
+
+{% block body %}
+    <h1>edit</h1>
+    
+    <form method="post">
+        <div class="form-group">
+            <label for="titre">titre</label>
+            <input type="text" name="titre" class="form-control" >
+
+
+
+        </div>
+        <div class="form-group">
+            <label for="prix">prix</label>
+            <input type="number" name="prix" class="form-control" >
+        </div>
+        <div class="form-group">
+            <label for="description">description</label>
+            <input type="text" name="description" class="form-control" value="ee">
+        </div>
+        <div class="form-group">
+            <label for="quantiteStock">quantiteStock</label>
+            <input type="number" name="quantiteStock" class="form-control">
+        </div>        
+        <div class="form-group">
+            <label for="statut">statut</label>
+            <select name="statut" class="form-control">
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="couleur">couleur</label>
+            <input type="text" name="couleur" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="image">image</label>
+            <input type="text" name="image" class="form-control">
+        </div>
+         <div class="form-group">
+            <label for="categorie">categorie</label>
+            <select name="categorie" class="form-control">
+                {% for data in category %}
+                <option value="{{ data.id }}">{{ data.nom }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="vendeur">vendeur</label>
+            <select name="vendeur" class="form-control">
+                {% for data in vendeur %}
+                    <option value="{{ data.id }}">{{ data.nom|upper~' '~data.prenom|capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <button name="editProduit" type="submit" class="btn btn-primary">register</button>
+        </div>
+    </form>
+
+
 {% endblock %}

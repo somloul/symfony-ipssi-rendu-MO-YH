@@ -30,6 +30,5 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    
 
 }

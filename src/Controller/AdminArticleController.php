@@ -21,10 +21,6 @@ class AdminArticleController extends AbstractController
         ]);
     }
 
-
-
-
-
     #[Route('/new', name: 'app_admin_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ArticleRepository $articleRepository): Response
     {
@@ -44,12 +40,6 @@ class AdminArticleController extends AbstractController
         ]);
     }
 
-
-
-
-
-
-    
     #[Route('/{id}', name: 'app_admin_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {

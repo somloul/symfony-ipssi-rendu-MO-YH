@@ -137,3 +137,39 @@ Merci d'ajouter un dossier SQL a la racine de votre projet et d'y joindre l'expo
 > mail : c.dev.jenny@gmail.com
 > objet : ipssi-rendu-symfony
 > contenu : Vos noms et prénoms, archive github (Avec la base de données en SQL comme précisé ci dessus svp)
+
+
+
+-------------------------------------------------------------------
+
+
+    #[Route('/new', name: 'app_admin_article_new', methods: ['GET', 'POST'])]
+    public function new( EntityManagerInterface $entityManager): Response
+    {
+
+        
+
+    $auteur = $entityManager->getRepository(User::class)->findAll();
+        if (isset($_POST['newArticle'])) {
+            $articleAdmin = new Article();
+            $articleAdmin->setTitre($_POST['titre']);
+            $articleAdmin->setContenu($_POST['contenu']);
+            $articleAdmin->setDatemodification($_POST['datemodification']);
+            $articleAdmin->setDatecreation($_POST['datecreation']);
+            $articleAdmin->setAuteur($entityManager->find(User::class,$_POST['auteur']));
+
+            $entityManager->persist($articleAdmin);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin_article_index');
+        }
+
+        return $this->renderForm('admin/admin_article/new.html.twig', [
+            'auteur'=>$auteur,
+        ]);
+    }
+
+
+
+
+    
