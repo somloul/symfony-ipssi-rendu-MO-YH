@@ -40,23 +40,24 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">login</a>
                         </li>
+{% else %}
+                    {% if app.user.roles[0]=='ROLE_VENDEUR' or app.user.roles[0]=='ROLE_CLIENT' %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_user_produit') }}">Produits</a>
+                    </li>
                     {% endif %}
 
-                    {% if app.user %}
+                    {% if app.user.roles[0]!='ROLE_ADMIN' %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Produits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Profil</a>
+                        <a class="nav-link active" aria-current="page" href="{{ path('profil') }}">Profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Panier</a>
                     </li>
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.nom }}  {{ app.user.prenom }} ✅, <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                    {% endif %}
-                    {% if app.user.roles==['ROLE_ADMIN'] %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('acceuil') }}">acceuil</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">articles</a>
                         </li>
@@ -70,6 +71,13 @@
                             <a class="nav-link active" aria-current="page" href="#">utilisateurs</a>
                         </li>
 
+                    {% endif %}
+
+                    {% endif %}
+                    {% if app.user %}
+                        <div class="mb-3">
+                            {{ app.user.roles[0] }} as {{ app.user.nom }}  {{ app.user.prenom }} ✅, <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
+                        </div>
                     {% endif %}
                 </ul>
             </div>

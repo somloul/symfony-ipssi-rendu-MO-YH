@@ -33,7 +33,7 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $couleur = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: false)]
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
